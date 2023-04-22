@@ -1,0 +1,32 @@
+services:
+  postgres:
+    image: postgres:14.4-alpine
+    environment:
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_DB=${DB_NAME}
+    ports:
+      - "${DB_PORT}:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -d ${DB_NAME}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+  # api:
+  #   build: 
+  #     context: .
+  #     dockerfile: Dockerfile
+  #     args:
+  #       - API_PORT=${API_PORT}
+  #   ports:
+  #     - "${API_PORT}:${API_PORT}"
+  #   environment:
+  #     - DB_SOURCE=${DB_SOURCE}
+  #     - HTTP_SERVER_ADDRESS=0.0.0.0:${API_PORT}
+  #     - TOKEN_SYMMETRIC_KEY=${TOKEN_SYMMETRIC_KEY}
+  #     - ACCESS_TOKEN_DURATION=${ACCESS_TOKEN_DURATION}
+  #     - REFRESH_TOKEN_DURATION=${REFRESH_TOKEN_DURATION}
+  #     - ENVIRONMENT=${ENVIRONMENT}
+  #   depends_on:
+  #     postgres:
+  #       condition: service_healthy

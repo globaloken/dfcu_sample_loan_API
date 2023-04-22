@@ -1,0 +1,40 @@
+### Create user
+POST http://0.0.0.0:5000/api/v1/users
+Content-Type: application/json
+
+{
+ "username": "wiz9",
+ "password":"secret",
+ "full_name": "Wizlif",
+ "email":"wiz9@gmail.com"
+}
+
+### Login account
+POST http://0.0.0.0:5000/api/v1/users/login
+Content-Type: application/json
+
+{
+    "username": "admin",
+    "password": "admin@admin.com"
+}
+
+### Create loan
+POST http://0.0.0.0:5000/api/v1/loans
+Content-Type: application/json
+Authorization: Bearer v2.local.Aif2JKPAVqlfUkuxuIzhvWAKvj-26AWgbYcpckyaq2BhObNI3zAkLhltBZJ0YPEHa17XP6AA3ud6nFfGo3-Op6qH6jF0Ywqut0cZcgbSvhSTecYZ-H_IqoFaN3mnCylCZhCF2ERuQPsYWzgAh7YG0eJ4go-2roZ8oE9ZycZlmet13PpvMLgUFi7tZ2s9WA8tzG_0GelAbQXNAoCZTNed6oSQZsbGQ6Bna8S52JUXA1G-IkdVKfjCBbzpwBDnIW6six1NTU4X.bnVsbA
+
+{
+    "amount": 800000
+}
+
+### Get loans
+GET http://0.0.0.0:5000/api/v1/loans/3990316820
+Content-Type: application/json
+Authorization: Bearer v2.local.anb3wmP9v-N8IaGiD0wsrZQ6k-wnesyhD6zPehAh32rP3RD09JjNFizhu3YKtnCqlGfiZatDxk0bAKFLZKIeSaGQlliugSfn_7DgRfH3_tXARvj0SBM1cAwwKJj5Fn4-kW9H6AkFIQ4XRye1We-CvHXguqD3bZ1OQuwl8Bi5aHD5HLnKFL8VQKC4kn6a4a0IKdLA7oqCb0-D__r_JISg7rL2A7YUiuRFVhXVqiAlBiqG5YOoios0FYyuG4e1Ql8hxYCKeqCU.bnVsbA
+
+
+### Get logs
+GET http://0.0.0.0:5000/api/v1/logs
+Content-Type: application/json
+Authorization: Bearer v2.local.LI4qU6GweGvHgTn9CU1xNTWd5HoRzMTvkwLJT8n6SkL9O2wLUXkv2b75iuHC2cxdsYMiyKLtcR64EWTdLLgz1A51tf_ydWLcyQqsZYkbdCCh-Eu5SrJf1Rk0PdweX8B8nlbujYewxfLyspOW7bZf5D1OkJXxzaTAZBA_OT3SQP5uOWzKEPs2VeM5NiEQRi2chCxnsUsLnOMhsAw5l68zX_26NekNK-KrrVqzYtQOtF6yp-b5Gzq8nnUFHmWzruHakMwOV42uXQ.bnVsbA
+

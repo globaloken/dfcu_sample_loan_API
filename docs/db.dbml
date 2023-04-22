@@ -1,0 +1,61 @@
+Project dfcu_bank {
+  database_type: 'PostgreSQL'
+  Note: '''
+    # DFCU Database
+  '''
+}
+
+enum user_type {
+    ADMIN [note: 'Bank Admin']
+    CLIENT [note: 'Bank Client']
+} 
+
+Table users as U {
+  username varchar [pk]
+  hashed_password varchar [not null]
+  full_name varchar [not null]
+  "type" user_type [not null]
+  email varchar [unique, not null]
+  account_no varchar(10) [unique, not null]
+  balance bigint [not null]
+  currency currency [not null]
+  password_changed_at timestamptz
+  created_at timestamptz [not null, default: `now()`]
+
+  Indexes {
+    account_no [unique]
+  }
+}
+
+enum currency {
+    UGX [note: 'Uganda Shilling']
+}
+
+Table loans {
+  id bigserial [pk]
+  username varchar [not null, ref: > U.username]
+  amount bigint [not null, note: 'must be positive']
+  created_at timestamptz [not null, default: `now()`]
+  
+  Indexes {
+    username
+  }
+}
+ 
+enum log_type {
+    REQUEST [note: 'API Request']
+    FAILED_VALIDATION [note: 'Failed account validation']
+    POSITIVE_REQUEST [note: 'More than one loan']
+    NEGATIVE_REQUEST [note: 'No loan']
+}
+ 
+Table logs {
+  id bigserial [pk]
+  username varchar [ref: > U.username]
+  "type" log_type [not null]
+  created_at timestamptz [not null, default: `now()`]
+  
+  Indexes {
+    username
+  }
+}

@@ -1,0 +1,6 @@
+info:
+  contact: {}
+  description: The API can be used to maintain and log loan actions
+  title: DFCU Loan Service API
+paths: {}
+swagger: "2.0"
